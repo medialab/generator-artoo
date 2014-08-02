@@ -1,0 +1,27 @@
+{
+  "name": "generator-artoo",
+  "version": "0.0.1",
+  "description": "A simple Yeoman generator to scaffold artoo.js projects.",
+  "main": "./app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medialab/generator-artoo.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": {
+    "name": "Yomguithereal"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/medialab/generator-artoo/issues"
+  },
+  "homepage": "https://github.com/medialab/generator-artoo",
+  "dependencies": {
+    "yeoman-generator": "~0.17.1"
+  }
+}
