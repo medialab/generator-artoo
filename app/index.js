@@ -34,9 +34,18 @@ module.exports = yeoman.generators.Base.extend({
         message: 'What kind of bookmarklet do you need to build?',
         type: 'list',
         choices: [
-          {name: 'A simple bookmarklet needing a single .js file', value: 'simple'},
-          {name: 'A complex bookmarklet needing several files', value: 'complex'},
-          {name: 'A bookmarklet injecting its custom UI', value: 'ui'}
+          {
+            name: 'A simple bookmarklet needing a single .js file',
+            value: 'simple'
+          },
+          {
+            name: 'A complex bookmarklet needing several files',
+            value: 'complex'
+          },
+          {
+            name: 'A bookmarklet injecting its custom UI',
+            value: 'ui'
+          }
         ]
       },
       {
@@ -67,30 +76,42 @@ module.exports = yeoman.generators.Base.extend({
 
     // Common files
     this.template('README.md', 'README.md', this);
+    this.template('package.json', 'package.json', this);
     this.copy('gitignore', '.gitignore');
     this.copy('npmignore', '.npmignore');
 
     // Specific files
-    this[this.bookmarkType + 'App']();
+    this.types[this.bookmarkType].call(this);
   },
 
-  packageJSON: function() {
-    this.template('package.json', 'package.json', this);
-  },
+  types: {
+    simple: function() {
 
-  simpleApp: function() {
+      // Lone file
+      this.copy('index.js', this.bookmarkName + '.js');
+      this.template('simple_gulpfile.js', 'gulpfile.js', this);
+    },
 
-    // Lone file
-    this.copy('index.js', this.bookmarkName + '.js');
-    this.template('simple_gulpfile.js', 'gulpfile.js', this);
-  },
+    complex: function() {
 
-  complexApp: function() {
+      // Several files
+      this.mkdir('src');
+      this.copy('file1.js', 'src/first.js');
+      this.copy('file2.js', 'src/second.js');
+      this.template('complex_gulpfile.js', 'gulpfile.js', this);
+    },
 
-  },
+    ui: function() {
 
-  uiApp: function() {
-    // TODO: reexec to false
+      // UI files
+      this.mkdir('src');
+      this.mkdir('templates');
+      this.mkdir('stylesheets');
+      this.copy('ui.js', 'src/ui.js');
+      this.copy('bookmark.css', 'stylesheets/bookmark.css');
+      this.copy('bookmark.tpl', 'templates/bookmark.tpl');
+      this.template('ui_gulpfile.js', 'gulpfile.js', this);
+    }
   },
 
   // Dependencies
