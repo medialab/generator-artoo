@@ -8,7 +8,7 @@
   "main": "<%= bookmarkName %>.js",
   "dependencies": {
     "gulp": "~3.8.6",
-    "gulp-artoo": "git+https://github.com/medialab/gulp-artoo.git",
+    "gulp-artoo": "*",
     <% if (bookmarkType !== 'simple') { %>"gulp-concat": "~2.3.4",<% } %>
     <% if (bookmarkType === 'ui') { %>"gulp-if": "~1.2.4",<% } %>
     "gulp-uglify": "~0.3.1",
