@@ -6,9 +6,16 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify');
 
+// Files to aggregate
+var files = [
+  './templates/*.tpl',
+  './stylesheets/*.css',
+  './src/*.js'
+];
+
 // Build
 function preBuild() {
-  return gulp.src(['./src/*.js', './templates/*.tpl', './stylesheets/*.css'])
+  return gulp.src(files)
     .pipe(gulpif('*.js', concat('<%= bookmarkName %>.concat.js')))
     .pipe(gulpif('*.tpl', artoo.template()))
     .pipe(gulpif('*.css', artoo.stylesheet()))
@@ -49,7 +56,7 @@ gulp.task('bookmark.prod', function() {
 
 // Watch
 gulp.task('watch', function() {
-  gulp.watch('./src', ['build']);
+  gulp.watch(files, ['build']);
 });
 
 // Server
