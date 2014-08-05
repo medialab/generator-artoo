@@ -1,6 +1,6 @@
 {
   "name": "generator-artoo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple Yeoman generator to scaffold artoo.js projects.",
   "main": "./app/index.js",
   "scripts": {
