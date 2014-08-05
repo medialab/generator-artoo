@@ -1,16 +1,8 @@
 var gulp = require('gulp'),
     artoo = require('gulp-artoo'),
-    jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
     webserver = require('gulp-webserver'),
     uglify = require('gulp-uglify');
-
-// Linting
-gulp.task('lint', function() {
-  return gulp.src('./<%= bookmarkName %>.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
 
 // Bookmarklets
 gulp.task('bookmark.dev', function() {
@@ -47,4 +39,4 @@ gulp.task('serve', function() {
 // Macro tasks
 gulp.task('work', ['serve']);
 gulp.task('bookmarklets', ['bookmark.dev', 'bookmark.prod']);
-gulp.task('default', ['lint', 'bookmark.dev', 'bookmark.prod']);
+gulp.task('default', ['bookmark.dev', 'bookmark.prod']);
