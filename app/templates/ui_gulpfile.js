@@ -16,7 +16,6 @@ var files = [
 // Build
 function preBuild() {
   return gulp.src(files)
-    .pipe(gulpif('*.js', concat('<%= bookmarkName %>.concat.js')))
     .pipe(gulpif('*.tpl', artoo.template()))
     .pipe(gulpif('*.css', artoo.stylesheet()))
     .pipe(concat('<%= bookmarkName %>.concat.js'));
