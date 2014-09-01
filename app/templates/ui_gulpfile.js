@@ -46,7 +46,7 @@ gulp.task('bookmark.prod', function() {
     .pipe(uglify())
     .pipe(rename('<%= bookmarkName %>.bookmark.prod.js'))
     .pipe(artoo({
-      setting: {
+      settings: {
         reExec: false
       }
     }))
